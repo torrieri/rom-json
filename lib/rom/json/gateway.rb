@@ -70,7 +70,7 @@ module ROM
       #
       # @api private
       def self.load_file(path)
-        ::JSON.parse(File.read(path))
+        ::JSON.parse(File.read(path), {symbolize_names: true})
       end
 
       # @param [String] path The absolute path to json file
@@ -100,7 +100,7 @@ module ROM
       #
       # @api public
       def dataset(name)
-        datasets[name] = Dataset.new(sources.fetch(name.to_s))
+        datasets[name] = Dataset.new(sources.fetch(name.to_sym))
       end
 
       # Return if a dataset with provided name exists
